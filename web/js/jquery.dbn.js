@@ -1,7 +1,7 @@
 (function($) {
   $.fn.dbn = function(code, settings) {
     
-    var config = {width:100, height:100};
+    var config = {width:101, height:101};
     if (settings) $.extend(config, settings);
     
     var paperProps = {height:config.height, width:config.width};
@@ -24,19 +24,25 @@
       var args = code[i].slice(1);
       
       if(instr == "paper"){
-        paper.fillStyle = "rgb("+args[0]+"%,"+args[0]+"%,"+args[0]+"%)";
-        paper.fillRect(0,0,100,100);
+        var papercolor = 100 - parseInt(args[0],10);
+        paper.fillStyle = "rgb("+papercolor+"%,"+papercolor+"%,"+papercolor+"%)";
+        paper.fillRect(0,0,101,101);
       }
       if(instr == "pen"){
-        paper.strokeStyle = "rgb("+args[0]+"%,"+args[0]+"%,"+args[0]+"%)";
+        var pencolor = 100 - parseInt(args[0],10);
+        paper.strokeStyle = "rgb("+pencolor+"%,"+pencolor+"%,"+pencolor+"%)";
       }
       if(instr == "line"){
+        var pts = args.map(function(e,i,a){return parseInt(e,10)})
+        paper.lineWidth = 1;
         paper.beginPath();
-        paper.moveTo(args[0],100-args[1]);
-        paper.lineTo(args[2],100-args[3]);
+        paper.moveTo((pts[0]+.5),100-(pts[1]+.5));
+        paper.lineTo((pts[2]+.5),100-(pts[3]+.5));
         paper.closePath();
         paper.stroke();
+        paper.save();
       }
+      
     }
 
     this.each(function() {
