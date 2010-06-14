@@ -6,7 +6,7 @@ To Code:
 Roughly:
 dbn.js (tentative name) will accept two parameters
 * an element id for the canvas (see what processing.js does)
-* the script, either via text or via an html elemnt that contains the script
+* the script, either via text or via an html element that contains the script
 
 dbn will create a 100x100, default sketch
 
