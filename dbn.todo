@@ -9,3 +9,8 @@ dbn.js (tentative name) will accept two parameters
 * the script, either via text or via an html elemnt that contains the script
 
 dbn will create a 100x100, default sketch
+
+call, perhaps, like this
+$("#elt").dbn("Paper 50")
+or like this
+$("#elt").dbn($("textarea").text())
