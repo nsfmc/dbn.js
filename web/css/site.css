@@ -5,7 +5,7 @@
 @import url(http://wf.typotheque.com/WF-009837-000414);
 
 body{
-  font-family: "Greta Text";
+  font-family: "Greta Text", georgia, serif;
   font-style: normal;
   font-weight: normal;
   font-stretch: normal;
@@ -14,7 +14,7 @@ body{
 }
 
 pre,code,textarea{
-  font-family: "Fedra Mono Medium 2";
+  font-family: "Fedra Mono Medium 2", monospace;
   font-style: normal;
   font-weight: normal;
   font-stretch: normal;
