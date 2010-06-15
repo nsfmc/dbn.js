@@ -19,16 +19,12 @@
 <body>
 	
 	<textarea id="code">Paper 0
-    Paper 0
-    Set P 30
-    Set A 10
-    Set B 90
-    Pen P
-
-    Line A A A B
-    Line A B B B
-    Line B B B A
-    Line B A A A</textarea>
+Pen 100
+Repeat A 0 100
+{
+  Pen A
+  Line A 0 A 100
+}</textarea>
 	
 	<input type="submit" name="run!" onclick="$('#can1').dbn($('#code')[0].value); return false;">
 	

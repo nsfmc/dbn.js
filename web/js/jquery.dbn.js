@@ -19,19 +19,38 @@
     // code is now an array of split values
     // console.debug(code);
     var lookup = {};
-    
-    var parser = function(instr, args){
-      console.log(args)
-      args = args.map(function(e,i,a){
-        console.log("in lookup:", e,lookup)
-        if(lookup.hasOwnProperty(e)){
-          console.log(lookup[e])
-          return lookup[e];
-        }else{
-          return e;
+    var lookupVars = function(e,i,a){ // look up variables
+      if(lookup.hasOwnProperty(e)){
+        return lookup[e];
+      }else{
+        return e;
+      }
+    };
+    var parser = function(instr, args){      
+      
+      if(instr === "repeat"){
+        var start = parseInt(args[1],10);
+        var stop = parseInt(args[2],10);
+        for(var j=start; j<=stop; j+=1){
+          parser("set",[args[0],j]); // ohhhh snap!!
+          // parse the argument here
+          var loop_instruction = ""; // for now
+          var k = i+1; // the next line in the dbn code
+          while(loop_instruction != "}"){ // end while at curly brace
+            loop_instruction = code[k][0].toLowerCase();
+            var loop_arguments = code[k].slice(1);
+            parser(loop_instruction, loop_arguments); //parse instruction
+            k+=1; // increment line of code
+          }
         }
-      });
-      console.log(args)
+        return;
+      }
+      if(instr === "set"){
+        lookup[args[0]] = parseInt(args[1],10);
+      }
+      
+      args = args.map(lookupVars); //look up any necessary variables
+      
       if(instr === "paper"){
         var papercolor = 100 - parseInt(args[0],10);
         
@@ -46,24 +65,19 @@
         var pts = args.map(function(e,i,a){return parseInt(e,10);});
         paper.lineWidth = 1;
         paper.beginPath();
-        paper.moveTo((pts[0]+0.5),100-(pts[1]+0.5));
-        paper.lineTo((pts[2]+0.5),100-(pts[3]+0.5));
+        paper.moveTo((pts[0]+0.5),100-(pts[1]-0.5));
+        paper.lineTo((pts[2]+0.5),100-(pts[3]-0.5));
         paper.closePath();
         paper.stroke();
         paper.save();
-      }
-      if(instr === "set"){
-        console.log("lookup",lookup)
-        lookup[args[0]] = parseInt(args[1],10);
-        console.log("lookup",lookup)
       }
     };
     
     for(var i=0; i<code.length; i+=1){
       var instruction = code[i][0].toLowerCase();
       var arguments = code[i].slice(1);
-      
-      parser(instruction, arguments, lookup);
+
+      parser(instruction, arguments);
     }
     
     this.each(function() {
