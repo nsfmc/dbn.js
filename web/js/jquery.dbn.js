@@ -17,7 +17,8 @@
       map($.trim).
       map(function(e,i,a){return e.split(/\s+/);}); // split on all stretches of white space " "
     // code is now an array of split values
-    // console.debug(code);
+    console.debug(code);
+    
     var lookup = {};
     var lookupVars = function(e,i,a){ // look up variables
       if(lookup.hasOwnProperty(e)){
@@ -26,13 +27,15 @@
         return e;
       }
     };
+    
     var parser = function(instr, args){      
       
       if(instr === "repeat"){
         var start = parseInt(args[1],10);
         var stop = parseInt(args[2],10);
         for(var j=start; j<=stop; j+=1){
-          parser("set",[args[0],j]); // ohhhh snap!!
+          // set the iter var in the global scope
+          parser("set",[args[0],j]); 
           // parse the argument here
           var loop_instruction = ""; // for now
           var k = i+1; // the next line in the dbn code
@@ -73,9 +76,9 @@
       }
     };
     
-    for(var i=0; i<code.length; i+=1){
-      var instruction = code[i][0].toLowerCase();
-      var arguments = code[i].slice(1);
+    for(var pc=0; pc<code.length; pc+=1){
+      var instruction = code[pc][0].toLowerCase();
+      var arguments = code[pc].slice(1);
 
       parser(instruction, arguments);
     }
