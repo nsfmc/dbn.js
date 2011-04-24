@@ -3,30 +3,77 @@
 <head>
   <meta charset='utf-8'>
 
-  <title>nsfmc/dbn.js @ GitHub</title>
-
+  <title>dbn.js @ GitHub</title>
+  <link rel="stylesheet" href="http://wf.typotheque.com/WF-009837-001132" type="text/css" />
+  
   <style type="text/css">
     body {
       margin-top: 1.0em;
-      background-color: #ede9d9;
+      background-color: #dedee0;
       font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
+      color: #333;
+      font-size:16px;
     }
     #container {
       margin: 0 auto;
       width: 700px;
     }
-    h1 { font-size: 3.8em; color: #121626; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #121626; }
-    h3 { text-align: center; color: #121626; }
-    a { color: #121626; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
+    h1, h2{
+      clear:both;
+      font-family: "Fedra Sans Display 1 Thin 3";
+      font-style: normal;
+      font-weight: normal;
+      font-stretch: normal;
+      margin-top:1em;
+    }
+    pre, code, textarea {
+      font-size:12px;
+      font-family: "Fedra Mono Medium 3";
+      font-style: normal;
+      font-weight: normal;
+      font-stretch: normal;
+    }
+    body{
+      font-family: "Greta Text Regular 5";
+      font-style: normal;
+      font-weight: normal;
+      font-stretch: normal;
+    }
+    em{
+      font-family: "Greta Text Regular Italic 4";
+      font-style: italic;
+      font-weight: normal;
+      font-stretch: normal;
+    }
+    strong{font-weight:normal; color:#900;}
+    a{ color:#900; text-decoration:none;}
+    a:link{color:#900;}
+    a:visited{ color:#933;}
+    a:hover{color:#c00;}
+    
+    .sketch{width:500px; margin-bottom:50px;}
+    .sketch .controls{ width:100%; background-color:#ccc;}
+    .sketch .canvas{
+      width:100px; height:100px;
+      padding:50px;
+      background-color:rgb(23,132,200);
+    }
+    .sketch .code{background-color:#fff; width:280px; height:190px; padding-left:20px; padding-top:10px;}
+    .sketch canvas{outline:1px solid black; background-color:#fff; }
+    .sketch .code,.sketch .canvas{float:left; margin:0;}
+    .sketch .code pre, .sketch .code textarea{ width:260px; height:170px; border-width:0;}
+    .sketch button{
+      background-color:#999; color:#ccc; width:30px; height:30px; 
+      cursor:pointer;
+      border-width:0;
+      margin:15px;
+         -moz-border-radius: 15px; 
+      -webkit-border-radius: 15px; 
+              border-radius: 15px; 
+      -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
+
+    }
+    .clear{clear:both;}
   </style>
 </head>
 
@@ -35,44 +82,71 @@
 
   <div id="container">
 
-    <div class="download">
-      <a href="http://github.com/nsfmc/dbn.js/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/nsfmc/dbn.js/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/nsfmc/dbn.js">dbn.js</a>
+    <h1><a href="http://github.com/nsfmc/dbn.js">DBN.js</a>
       <span class="small">by <a href="http://github.com/nsfmc">nsfmc</a></span></h1>
 
     <div class="description">
       a design by numbers port in javascript backed by canvas
     </div>
-
+    
+    <div class="sketch">
+      <noscript>
+        <p>Sorry! This will not work without javascript enabled <code>:(</code></p>
+      </noscript>
+      <div class="controls">
+        <button class="play"> &#x25B6; </button>
+      </div>
+      
+      <div class="canvas">
+        <canvas id="can1" width="101" height="101"></canvas>
+    	</div>
+    	<div class="code">
+      <textarea id="repeatcode">Paper 0
+Pen 100
+Repeat A 0 100
+{
+  Pen A
+  Line A 0 A 100
+}</textarea>
+      </div>
+    </div>
+    <div class="clear"></div>
+    
+    
     <h2>Authors</h2>
-<p>Marcos Ojeda (subliminal@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Marcos Ojeda (subliminal@gmail.com)<br/>      </p>
+<p>Marcos Ojeda (subliminal@gmail.com)
 
-
-    <h2>Download</h2>
+    <h2>Downloading &amp; Collaboration</h2>
     <p>
       You can download this project in either
       <a href="http://github.com/nsfmc/dbn.js/zipball/master">zip</a> or
       <a href="http://github.com/nsfmc/dbn.js/tarball/master">tar</a> formats.
     </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+    <p>You can clone the project, like i do, with <a href="http://hg-git.github.com/">hg-git</a>
       by running:
-      <pre>$ git clone git://github.com/nsfmc/dbn.js</pre>
-    </p>
+      <pre>$ hg clone git://github.com/nsfmc/dbn.js</pre>
+    <p>provided you have <a href="http://mercurial.selenic.com/wiki/BookmarksExtension">mercurial bookmarks</a> installed.
 
     <div class="footer">
       get the source code on GitHub : <a href="http://github.com/nsfmc/dbn.js">nsfmc/dbn.js</a>
     </div>
 
   </div>
-
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="jquery-1.5.2.min.js">\x3C/script>')</script>
+  <script src="dbn.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      $(".sketch .controls button.play").click(function(){
+        var sketch = $(this).parent().parent();
+        var code = $("textarea", sketch).val();
+        $("canvas",sketch).dbn(code);
+      });
+    });
+  </script>
+  
   <script type="text/javascript">
+  
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
