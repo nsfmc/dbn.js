@@ -1,6 +1,33 @@
+/* 
+ 
+ dbn.js
+ Copyright (c) 2011 Marcos Ojeda, breakfastsandwich.org
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ 
+ */
+ 
 (function($) {
+  
   $.fn.dbn = function(code, settings) {
     
+    // set dbn canvas defaults and extend if necessary
     var config = {width:101, height:101};
     if (settings) $.extend(config, settings);
     
@@ -28,6 +55,8 @@
       }
     };
     
+    
+    
     var parser = function(instr, args){      
       
       if(instr === "repeat"){
@@ -48,11 +77,18 @@
         }
         return;
       }
+      
+      
+      
       if(instr === "set"){
         lookup[args[0]] = parseInt(args[1],10);
       }
       
+      
+      
       args = args.map(lookupVars); //look up any necessary variables
+      
+      
       
       if(instr === "paper"){
         var papercolor = 100 - parseInt(args[0],10);
@@ -60,10 +96,16 @@
         paper.fillStyle = "rgb("+papercolor+"%,"+papercolor+"%,"+papercolor+"%)";
         paper.fillRect(0,0,101,101); //TODO this assumes a traditional 100x100 canvas
       }
+      
+      
+      
       if(instr === "pen"){
         var pencolor = 100 - parseInt(args[0],10);
         paper.strokeStyle = "rgb("+pencolor+"%,"+pencolor+"%,"+pencolor+"%)";
       }
+      
+      
+      
       if(instr === "line"){
         var pts = args.map(function(e,i,a){return parseInt(e,10);});
         paper.lineWidth = 1;
@@ -75,6 +117,8 @@
         paper.save();
       }
     };
+    
+    
     
     for(var pc=0; pc<code.length; pc+=1){
       var instruction = code[pc][0].toLowerCase();
