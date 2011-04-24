@@ -1,6 +1,7 @@
 /* 
  
- dbn.js
+ dbn.js // http://github.com/nsfmc/dbn.js/
+ 
  Copyright (c) 2011 Marcos Ojeda, breakfastsandwich.org
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -44,7 +45,7 @@
       map($.trim).
       map(function(e,i,a){return e.split(/\s+/);}); // split on all stretches of white space " "
     // code is now an array of split values
-    console.debug(code);
+    // console.debug(code);
     
     var lookup = {};
     var lookupVars = function(e,i,a){ // look up variables
@@ -67,7 +68,7 @@
           parser("set",[args[0],j]); 
           // parse the argument here
           var loop_instruction = ""; // for now
-          var k = i+1; // the next line in the dbn code
+          var k = pc+1; // the next line in the dbn code
           while(loop_instruction != "}"){ // end while at curly brace
             loop_instruction = code[k][0].toLowerCase();
             var loop_arguments = code[k].slice(1);
