@@ -118,7 +118,8 @@
         <p>Sorry! This will not work without javascript enabled <code>:(</code></p>
       </noscript>
       <div class="controls">
-        <button class="play"> &#x25B6; </button>
+        <button class="play" title="run your sketch"> &#x25B6; </button>
+        <button class="download" title="download your sketch"> &#x2665; </button>
         <p class="notes">click the play button to run your code</p>
       </div>
 
@@ -232,6 +233,11 @@ repeat a 3 65
         var code = $("textarea", sketch).val();
         $("canvas",sketch).dbn(code);
       });
+      $(".sketch .controls button.download").live("click",function(){
+        var sketch = $(this).parent().parent();
+        window.location = $("canvas",sketch)[0].toDataURL();
+      })
+      
       $(".presketch").each(function(e,i,v){
         var tmpl = {"code":$(this).text()}
         console.log(tmpl)
