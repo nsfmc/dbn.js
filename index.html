@@ -26,19 +26,21 @@
       font-stretch: normal;
       margin-top:1em;
     }
-    pre, code, textarea {
+    pre, code, textarea, h3 {
       font-size:12px;
       font-family: "Fedra Mono Medium 3";
       font-style: normal;
       font-weight: normal;
       font-stretch: normal;
     }
+    h3{margin-top:3em; margin-bottom:.5em; font-size:16px;}
     body{
       font-family: "Greta Text Regular 5";
       font-style: normal;
       font-weight: normal;
       font-stretch: normal;
     }
+    p{width:500px;}
     em{
       font-family: "Greta Text Regular Italic 4";
       font-style: italic;
@@ -52,11 +54,15 @@
     a:hover{color:#c00;}
     
     .sketch{width:500px; margin-bottom:50px;}
-    .sketch .controls{ width:100%; background-color:#ccc;}
+    .sketch .controls{ width:100%; background-color:#ccc; position:relative;}
+    .sketch .controls .notes{ 
+      position:absolute; right:1em; margin:0; bottom:1em; width:auto;
+      font-size:10px; font-family:"andale mono", andalemono, monospace;
+    }
     .sketch .canvas{
       width:100px; height:100px;
       padding:50px;
-      background-color:rgb(23,132,200);
+      background-color:rgb(51,102,153);
     }
     .sketch .code{background-color:#fff; width:280px; height:190px; padding-left:20px; padding-top:10px;}
     .sketch canvas{outline:1px solid black; background-color:#fff; }
@@ -66,7 +72,7 @@
       background-color:#999; color:#ccc; width:30px; height:30px; 
       cursor:pointer;
       border-width:0;
-      margin:15px;
+      margin:5px 15px;
          -moz-border-radius: 15px; 
       -webkit-border-radius: 15px; 
               border-radius: 15px; 
@@ -74,7 +80,59 @@
 
     }
     .clear{clear:both;}
+    .code textarea::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      border-left: solid 1 #000;
+    }
+    .code textarea::-webkit-scrollbar-button:start:decrement {
+      display: block;
+      height: 5px;
+    }
+    .code textarea::-webkit-scrollbar-button:end:increment {
+      display: block;
+      height: 5px;
+    }
+    .code textarea::-webkit-scrollbar-button:vertical:increment {
+      background-color: transparent;
+    }
+    .code textarea::-webkit-scrollbar-track:enabled {
+      background-color: rgba(113,112,107,0.1);
+      -webkit-border-radius: 5px;
+    }
+    .code textarea::-webkit-scrollbar-thumb:vertical {
+      height: 10px;
+      background-color: rgba(0,0,0,.2);
+      -webkit-border-radius: 5px;
+    }
+    .code textarea::-webkit-scrollbar-thumb:horizontal {
+      width: 50px;
+      background-color: rgba(0,0,0,.2);
+      -webkit-border-radius: 5px;
+    }
   </style>
+
+  <script type="text/html" id="dbnsketch">
+    <div class="sketch">
+      <noscript>
+        <p>Sorry! This will not work without javascript enabled <code>:(</code></p>
+      </noscript>
+      <div class="controls">
+        <button class="play"> &#x25B6; </button>
+        <p class="notes">click the play button to run your code</p>
+      </div>
+
+      <div class="canvas">
+        <canvas width="101" height="101"></canvas>
+      </div>
+      <div class="code">
+      <textarea id="repeatcode">{{ code }}</textarea>
+      </div>
+    </div>
+    <div class="clear"></div>
+    
+  </script>
+
 </head>
 
 <body>
@@ -86,37 +144,71 @@
       <span class="small">by <a href="http://github.com/nsfmc">nsfmc</a></span></h1>
 
     <div class="description">
-      a design by numbers port in javascript backed by canvas
+      a <a href="http://dbn.media.mit.edu/">design by numbers</a> port in javascript backed by canvas.
     </div>
     
-    <div class="sketch">
-      <noscript>
-        <p>Sorry! This will not work without javascript enabled <code>:(</code></p>
-      </noscript>
-      <div class="controls">
-        <button class="play"> &#x25B6; </button>
-      </div>
-      
-      <div class="canvas">
-        <canvas id="can1" width="101" height="101"></canvas>
-    	</div>
-    	<div class="code">
-      <textarea id="repeatcode">Paper 0
+      <pre class="presketch">Paper 0
 Pen 100
 Repeat A 0 100
 {
   Pen A
   Line A 0 A 100
-}</textarea>
-      </div>
-    </div>
-    <div class="clear"></div>
+}
+Repeat B 25 75
+{
+  Pen B
+  Line 25 B 75 B
+}</pre>
+
+    <h2>Demos / Language</h2>
+    
+    <h3>paper</h3>
+    <p>Here's the <code>paper</code> command. You can use it to set the background color. It takes one argument, the value of the background from 0-100, inclusive.</p>
+    <pre class="presketch">paper 35</pre>
+
+    <h3>line</h3>
+    <p>This is the <code>line</code> command. It takes four arguments, the first two are the starting x point and the last two represent the starting y point</p>
+    <pre class="presketch">paper 0
+line 45 75 65 15
+line 55 45 35 15</pre>
+
+    <h3>set</h3>
+    <p>Here's the <code>set</code> command. You can use it to save numbers in variables with easy to remember names.</p>
+    <pre class="presketch">set a 65
+line a 23 54 a
+set a 23
+line a 23 54 a
+set a 3
+line a 23 54 a
+</pre>
+    
+    <h3>repeat</h3>
+    <p>This is the <code>repeat</code> command, you use it to repeat things over and over again.
+    <p>I'm curious about what that last command looked like if i had picked a bunch of <code>a</code> values, but i'm so <em>lazy</em>. But with repeat, I can find out what it'd look like!</p>
+    <pre class="presketch">paper 0
+repeat a 3 65
+{
+  line a 23 54 a
+}</pre>
+    <p>I can even see it draw itself!
+    <pre class="presketch">paper 0
+repeat a 3 65
+{
+  pen a
+  line a 23 54 a
+}</pre>  
+
+    
+
+    <h2>Notes</h2>
+    <p>The current implementation is fairly limited, it is capable of simple iteration, but it cannot deal with nested iteration (yet). The following commands are implemented: paper, line, repeat (non-nested), set. This means that there are still a good number of commands not yet defined (including command, forever, and the interactive ones)! Additionally, equations are not evaluated :(</p>
     
     
     <h2>Authors</h2>
-<p>Marcos Ojeda (subliminal@gmail.com)
+    <p>Marcos Ojeda (subliminal@gmail.com) although design by numbers is itself &copy; mit acg/plw. 
 
     <h2>Downloading &amp; Collaboration</h2>
+    <p>I could really use help! I'm no expert in writing a parser/compiler, so the current implementation is quite na&iuml;ve. I'd love any help you can offer. I've considered using jison or peg.js, but these solutions seem a bit overkill, so right now the parser is fairly simple.
     <p>
       You can download this project in either
       <a href="http://github.com/nsfmc/dbn.js/zipball/master">zip</a> or
@@ -125,23 +217,25 @@ Repeat A 0 100
     <p>You can clone the project, like i do, with <a href="http://hg-git.github.com/">hg-git</a>
       by running:
       <pre>$ hg clone git://github.com/nsfmc/dbn.js</pre>
-    <p>provided you have <a href="http://mercurial.selenic.com/wiki/BookmarksExtension">mercurial bookmarks</a> installed.
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/nsfmc/dbn.js">nsfmc/dbn.js</a>
-    </div>
+    <p>provided you have <a href="http://mercurial.selenic.com/wiki/BookmarksExtension">mercurial bookmarks</a> and hg-git installed.
 
   </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="jquery-1.5.2.min.js">\x3C/script>')</script>
+  <script src="plugins.js"></script>
   <script src="dbn.js"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
-      $(".sketch .controls button.play").click(function(){
+      $(".sketch .controls button.play").live("click",function(){
         var sketch = $(this).parent().parent();
         var code = $("textarea", sketch).val();
         $("canvas",sketch).dbn(code);
       });
+      $(".presketch").each(function(e,i,v){
+        var tmpl = {"code":$(this).text()}
+        console.log(tmpl)
+        $(this).replaceWith(ich.dbnsketch(tmpl));
+      })
     });
   </script>
   

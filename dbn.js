@@ -81,14 +81,25 @@
       
       
       
+      
       if(instr === "set"){
-        lookup[args[0]] = parseInt(args[1],10);
+        if(args[0][0] === "["){
+          // set the value of a pixel
+          var num = /(\d+)/;
+          var xp = parseInt(num.exec(args[0])[0],10);
+          var yp = parseInt(num.exec(args[1])[0],10);
+          var pen = parseInt(args[2],10);
+          parser("pen", [pen]);
+          parser("line",[xp,yp,(xp+0.5),yp])
+          
+        }else{
+          // set the value of a variable
+          lookup[args[0]] = parseInt(args[1],10);
+        }
       }
-      
-      
-      
-      args = args.map(lookupVars); //look up any necessary variables
-      
+
+
+      args = args.map(lookupVars); //look up any necessary variables            
       
       
       if(instr === "paper"){
@@ -108,7 +119,9 @@
       
       
       if(instr === "line"){
-        var pts = args.map(function(e,i,a){return parseInt(e,10);});
+        var pts = args.map(function(e,i,a){
+          return (typeof e === "number") ? e : parseInt(e,10);
+        });
         paper.lineWidth = 1;
         paper.beginPath();
         paper.moveTo((pts[0]+0.5),100-(pts[1]-0.5));
