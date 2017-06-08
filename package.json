@@ -1,4 +1,9 @@
 {
+  "name": "dbn",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "jest": "^20.0.4"
   }
