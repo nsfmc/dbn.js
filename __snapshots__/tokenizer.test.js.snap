@@ -1,0 +1,463 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tokenizer matches a complex set command 1`] = `
+Array [
+  Object {
+    "end": 3,
+    "kind": "identifier",
+    "loc": Object {
+      "end": 3,
+      "start": 0,
+    },
+    "start": 0,
+    "value": "set",
+  },
+  Object {
+    "end": 4,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 0,
+      },
+    },
+    "start": 3,
+    "value": " ",
+  },
+  Object {
+    "end": 5,
+    "kind": "identifier",
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 4,
+        "line": 0,
+      },
+    },
+    "start": 4,
+    "value": "v",
+  },
+  Object {
+    "end": 6,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 6,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 0,
+      },
+    },
+    "start": 5,
+    "value": " ",
+  },
+  Object {
+    "end": 7,
+    "kind": "openParen",
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 6,
+        "line": 0,
+      },
+    },
+    "start": 6,
+    "value": "(",
+  },
+  Object {
+    "end": 9,
+    "kind": "number",
+    "loc": Object {
+      "end": 9,
+      "start": 7,
+    },
+    "start": 7,
+    "value": "23",
+  },
+  Object {
+    "end": 10,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 10,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 0,
+      },
+    },
+    "start": 9,
+    "value": " ",
+  },
+  Object {
+    "end": 11,
+    "kind": "plusSign",
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 0,
+      },
+    },
+    "start": 10,
+    "value": "+",
+  },
+  Object {
+    "end": 12,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 0,
+      },
+    },
+    "start": 11,
+    "value": " ",
+  },
+  Object {
+    "end": 14,
+    "kind": "number",
+    "loc": Object {
+      "end": 14,
+      "start": 12,
+    },
+    "start": 12,
+    "value": "10",
+  },
+  Object {
+    "end": 15,
+    "kind": "closeParen",
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 14,
+        "line": 0,
+      },
+    },
+    "start": 14,
+    "value": ")",
+  },
+]
+`;
+
+exports[`tokenizer matches a line command 1`] = `
+Array [
+  Object {
+    "end": 4,
+    "kind": "identifier",
+    "loc": Object {
+      "end": 4,
+      "start": 0,
+    },
+    "start": 0,
+    "value": "line",
+  },
+  Object {
+    "end": 5,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 4,
+        "line": 0,
+      },
+    },
+    "start": 4,
+    "value": " ",
+  },
+  Object {
+    "end": 7,
+    "kind": "number",
+    "loc": Object {
+      "end": 7,
+      "start": 5,
+    },
+    "start": 5,
+    "value": "30",
+  },
+  Object {
+    "end": 8,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 0,
+      },
+    },
+    "start": 7,
+    "value": " ",
+  },
+  Object {
+    "end": 10,
+    "kind": "number",
+    "loc": Object {
+      "end": 10,
+      "start": 8,
+    },
+    "start": 8,
+    "value": "21",
+  },
+  Object {
+    "end": 11,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 0,
+      },
+    },
+    "start": 10,
+    "value": " ",
+  },
+  Object {
+    "end": 13,
+    "kind": "number",
+    "loc": Object {
+      "end": 13,
+      "start": 11,
+    },
+    "start": 11,
+    "value": "22",
+  },
+  Object {
+    "end": 14,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 13,
+        "line": 0,
+      },
+    },
+    "start": 13,
+    "value": " ",
+  },
+  Object {
+    "end": 16,
+    "kind": "number",
+    "loc": Object {
+      "end": 16,
+      "start": 14,
+    },
+    "start": 14,
+    "value": "50",
+  },
+]
+`;
+
+exports[`tokenizer matches a multiline set command 1`] = `
+Array [
+  Object {
+    "end": 3,
+    "kind": "identifier",
+    "loc": Object {
+      "end": 3,
+      "start": 0,
+    },
+    "start": 0,
+    "value": "set",
+  },
+  Object {
+    "end": 4,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 0,
+      },
+    },
+    "start": 3,
+    "value": " ",
+  },
+  Object {
+    "end": 5,
+    "kind": "identifier",
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 4,
+        "line": 0,
+      },
+    },
+    "start": 4,
+    "value": "v",
+  },
+  Object {
+    "end": 6,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 6,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 0,
+      },
+    },
+    "start": 5,
+    "value": " ",
+  },
+  Object {
+    "end": 7,
+    "kind": "newline",
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 0,
+      },
+      "start": Object {
+        "column": 6,
+        "line": 0,
+      },
+    },
+    "start": 6,
+    "value": "
+",
+  },
+  Object {
+    "end": 8,
+    "kind": "openParen",
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 1,
+      },
+      "start": Object {
+        "column": 0,
+        "line": 1,
+      },
+    },
+    "start": 7,
+    "value": "(",
+  },
+  Object {
+    "end": 10,
+    "kind": "number",
+    "loc": Object {
+      "end": 10,
+      "start": 8,
+    },
+    "start": 8,
+    "value": "23",
+  },
+  Object {
+    "end": 11,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 1,
+      },
+    },
+    "start": 10,
+    "value": " ",
+  },
+  Object {
+    "end": 12,
+    "kind": "plusSign",
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+      },
+      "start": Object {
+        "column": 4,
+        "line": 1,
+      },
+    },
+    "start": 11,
+    "value": "+",
+  },
+  Object {
+    "end": 13,
+    "kind": "whitespace",
+    "loc": Object {
+      "end": Object {
+        "column": 6,
+        "line": 1,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+      },
+    },
+    "start": 12,
+    "value": " ",
+  },
+  Object {
+    "end": 15,
+    "kind": "number",
+    "loc": Object {
+      "end": 15,
+      "start": 13,
+    },
+    "start": 13,
+    "value": "10",
+  },
+  Object {
+    "end": 16,
+    "kind": "closeParen",
+    "loc": Object {
+      "end": Object {
+        "column": 9,
+        "line": 1,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 1,
+      },
+    },
+    "start": 15,
+    "value": ")",
+  },
+]
+`;
